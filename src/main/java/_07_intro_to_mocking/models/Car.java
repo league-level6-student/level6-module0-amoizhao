@@ -44,7 +44,6 @@ public class Car {
     }
 
     public boolean fillTank(int octaneGrade){
-    	System.out.println("fill tank");
         return gasTank.fill(octaneGrade);
     }
 

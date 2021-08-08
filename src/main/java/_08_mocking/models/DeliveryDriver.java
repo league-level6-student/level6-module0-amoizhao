@@ -55,8 +55,6 @@ public class DeliveryDriver {
     }
 
     public boolean refuel(int octaneGrade){
-    	System.out.println("refuel");
-    	System.out.println(cellPhone.browseCatMemes());
         return car.fillTank(octaneGrade);
     }
 

@@ -19,9 +19,6 @@ class DeliveryDriverTest {
     CellPhone cellPhone;
     
     @Mock
-    GasTank gasTank;
-    
-    @Mock
     Car car;
     
     private String name = "bob";
@@ -50,7 +47,7 @@ class DeliveryDriverTest {
     	boolean expectedRefuel = true;
     	int octane = 85;
         //when
-    	when(gasTank.fill(octane)).thenReturn(true);
+    	when(car.fillTank(octane)).thenReturn(true);
     	boolean actualRefuel = deliveryDriver.refuel(octane);
         //then
     	assertEquals(expectedRefuel, actualRefuel);

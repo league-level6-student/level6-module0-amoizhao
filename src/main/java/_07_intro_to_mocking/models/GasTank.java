@@ -5,7 +5,6 @@ public class GasTank {
     double fuelLevelGallons = 12;
 
     public boolean fill(int octaneGrade){
-    	System.out.println("fill");
         return true;
     }
 

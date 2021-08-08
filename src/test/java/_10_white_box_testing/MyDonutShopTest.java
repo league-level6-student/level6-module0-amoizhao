@@ -17,18 +17,40 @@ class MyDonutShopTest {
 
     MyDonutShop myDonutShop;
 
+    @Mock
+    BakeryService bakeryService;
+    
+    @Mock
+    PaymentService paymentService;
+    
+    @Mock
+    DeliveryService deliveryService;
+    
     @BeforeEach
     void setUp() {
-
+    	MockitoAnnotations.openMocks(this);
+    	myDonutShop = new MyDonutShop(paymentService, deliveryService, bakeryService);
     }
 
     @Test
     void itShouldTakeDeliveryOrder() throws Exception {
         //given
+    	Order order = new Order("bob",
+                "321",
+                1,
+                5.00,
+                "123",
+                true);
 
+    	when(bakeryService.getDonutsRemaining()).thenReturn(2);
+    	when(paymentService.charge(order)).thenReturn(true);
+    	
         //when
-
+    	myDonutShop.openForTheDay();
+    	myDonutShop.takeOrder(order);
+    	
         //then
+    	verify(deliveryService, times(1)).scheduleDelivery(order);
     }
 
     @Test
