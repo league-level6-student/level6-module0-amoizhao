@@ -27,7 +27,7 @@ public class Order {
         this.dollarAmount = dollarAmount;
         this.creditCardNumber = creditCardNumber;
         this.delivery = delivery;
-    }
+    } 
 
     public String getCustomerName() {
         return customerName;

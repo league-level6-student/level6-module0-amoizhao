@@ -52,7 +52,7 @@ public class MyDonutShop {
         if (openForBusiness) {
             int donutsInOrder = order.getNumberOfDonuts();
             if (donutsInOrder <= bakeryService.getDonutsRemaining()) {
-                addOrder(order);
+                addOrder(order); 
             } else {
                 throw new IllegalArgumentException("Insufficient donuts remaining");
             }

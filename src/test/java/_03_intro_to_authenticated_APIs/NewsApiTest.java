@@ -11,6 +11,9 @@ import org.springframework.web.reactive.function.client.WebClient.RequestHeaders
 import org.springframework.web.reactive.function.client.WebClient.RequestHeadersUriSpec;
 import org.springframework.web.reactive.function.client.WebClient.ResponseSpec;
 import org.springframework.web.util.UriBuilder;
+
+import _01_intro_to_APIs.CheetahSearchApi;
+import _01_intro_to_APIs.data_transfer_objects.Result;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
@@ -26,10 +29,27 @@ import static org.mockito.Mockito.*;
 class NewsApiTest {
 
     NewsApi newsApi;
+    
+    @Mock
+    WebClient webClientMock;
+
+    @Mock
+    WebClient.RequestHeadersUriSpec requestHeadersUriSpecMock;
+
+    @Mock
+    WebClient.RequestHeadersSpec requestHeadersSpecMock;
+
+    @Mock
+    WebClient.ResponseSpec responseSpecMock;
+
+    @Mock
+    Mono<Result[]> resultMonoMock;
 
     @BeforeEach
     void setUp() {
+    	MockitoAnnotations.openMocks(this);
 
+    	newsApi = new NewsApi();
     }
 
     @Test

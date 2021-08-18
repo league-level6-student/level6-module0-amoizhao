@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 class MyDonutShopTest {
@@ -56,19 +57,38 @@ class MyDonutShopTest {
     @Test
     void givenInsufficientDonutsRemaining_whenTakeOrder_thenThrowIllegalArgumentException() {
         //given
-
+    	Order order = new Order("bob",
+                "321",
+                1,
+                5.00,
+                "123",
+                true);
+    	
         //when
-
+    	bakeryService.setDonutsRemaining(0);
+    	myDonutShop.openForTheDay();
+    	
         //then
+    	Throwable thrownException = assertThrows(Exception.class, () -> myDonutShop.takeOrder(order));
+    	assertEquals(thrownException.getMessage(), "Insufficient donuts remaining");
+    	verify(bakeryService, never()).removeDonuts(1);
     }
 
     @Test
     void givenNotOpenForBusiness_whenTakeOrder_thenThrowIllegalStateException(){
         //given
-
+    	Order order = new Order("bob",
+                "321",
+                1,
+                5.00,
+                "123",
+                true);
         //when
 
         //then
+    	Throwable thrownException = assertThrows(Exception.class, () -> myDonutShop.takeOrder(order));
+    	assertEquals(thrownException.getMessage(), "Sorry we're currently closed");
+    	verify(bakeryService, never()).removeDonuts(1);
     }
 
 }
